@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ImageBackground, SafeAreaView } from 'react-native';
 import {useFonts} from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import Header from './components/Header';
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
 import GameOverScreen from './screens/GameOverScreen';
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function App(): React.ReactNode {
   const [userNumber, setUserNumber] = useState<number>();
@@ -52,10 +52,19 @@ if(!fontsLoaded) {
   }
 
   return (
-    <View style={styles.screen}>
-      <Header title="Guess a Number" />
-      {content}
-    </View>
+    <LinearGradient
+    colors={['#4c669f', '#3b5998', '#192f6a']}
+    style={styles.screen}
+  >
+    <ImageBackground
+      source={require('./assets/background.png')}
+      resizeMode="cover"
+      style={styles.screen}
+      imageStyle={styles.backgroundImage}
+    >
+      <SafeAreaView style={styles.screen}>{content}</SafeAreaView>
+    </ImageBackground>
+  </LinearGradient>
   );
 
 }
@@ -63,5 +72,8 @@ if(!fontsLoaded) {
 const styles = StyleSheet.create({
   screen: {
     flex: 1
-  }
+  },
+  backgroundImage: {
+    opacity: 0.15,
+  },
 });
