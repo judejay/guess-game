@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, Image } from 'react-native';
+import { View, Text, StyleSheet, Button, Image, Dimensions } from 'react-native';
 
 import BodyText from '../components/BodyText';
 import TitleText from '../components/TitleText';
@@ -41,6 +41,7 @@ const GameOverScreen: React.FC<Props> = (props) => {
   );
 };
 
+const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -48,9 +49,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   imageContainer: {
-    width: 300,
-    height: 300,
-    borderRadius: 150,
+    width: deviceWidth < 300 ? 150 : 300,
+    height: deviceWidth < 300 ? 150 : 300,
+    borderRadius: deviceWidth < 300 ? 75 : 150,
     borderWidth: 3,
     borderColor: 'black',
     overflow: 'hidden',

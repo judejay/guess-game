@@ -6,7 +6,9 @@ import {
   Button,
   TouchableWithoutFeedback,
   Keyboard,
-  Alert
+  Alert,
+  useWindowDimensions,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 import Card from '../components/Card';
@@ -25,6 +27,8 @@ const StartGameScreen: React.FC<Props> = (props) => {
   const [enteredValue, setEnteredValue] = useState<string>('');
   const [confirmed, setConfirmed] = useState<boolean>(false);
   const [selectedNumber, setSelectedNumber] = useState<number | null>(null);
+
+const { width, height } = useWindowDimensions();
 
   const numberInputHandler = (inputText: string) => {
     setEnteredValue(inputText.replace(/[^0-9]/g, ''));
@@ -65,13 +69,14 @@ const StartGameScreen: React.FC<Props> = (props) => {
     );
   }
 
-  return (
+  const marginTop = height < 380 ? 30 : 100;
+  return (   
     <TouchableWithoutFeedback
       onPress={() => {
         Keyboard.dismiss();
       }}
-    >
-      <View style={styles.screen}>
+    > 
+      <View style={[styles.screen, {marginTop: marginTop}]}>
         <TitleText style={styles.title}>Start a New Game!</TitleText>
         <Card style={styles.inputContainer}>
           <BodyText>Select a Number</BodyText>
@@ -103,10 +108,12 @@ const StartGameScreen: React.FC<Props> = (props) => {
           </View>
         </Card>
         {confirmedOutput}
-      </View>
+      </View> 
     </TouchableWithoutFeedback>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   screen: {

@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
 import {
   View,
   Text,
   StyleSheet,
   Alert,
   ScrollView,
-  FlatList
+  FlatList, 
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -112,6 +112,8 @@ const GameScreen: React.FC<GameScreenProps> = (props) => {
     </View>
   );
 };
+
+//const marginTopDistance 
 
 const styles = StyleSheet.create({
   screen: {

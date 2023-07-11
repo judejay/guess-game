@@ -7,7 +7,7 @@ import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
 import GameOverScreen from './screens/GameOverScreen';
 import { LinearGradient } from 'expo-linear-gradient';
-
+import { StatusBar } from 'expo-status-bar';
 export default function App(): React.ReactNode {
   const [userNumber, setUserNumber] = useState<number>();
   const [guessRounds, setGuessRounds] = useState<number>(0);
@@ -52,6 +52,8 @@ if(!fontsLoaded) {
   }
 
   return (
+    <>
+    <StatusBar style="light" />
     <LinearGradient
     colors={['#4c669f', '#3b5998', '#192f6a']}
     style={styles.screen}
@@ -65,6 +67,7 @@ if(!fontsLoaded) {
       <SafeAreaView style={styles.screen}>{content}</SafeAreaView>
     </ImageBackground>
   </LinearGradient>
+  </>
   );
 
 }
